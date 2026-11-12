@@ -1,0 +1,18 @@
+/* Saving throws and skill proficiency — Stage 1 */
+.gmm-monster-sheet .gmm-save-editor { display:flex; flex-wrap:wrap; gap:8px 14px; margin-bottom:14px; }
+.gmm-monster-sheet .gmm-save-editor label { display:inline-flex; align-items:center; gap:4px; font-size:12px; }
+.gmm-monster-sheet .gmm-save-editor input { width:auto; min-height:0; margin:0; }
+.gmm-monster-sheet .gmm-proficiencies-section { padding:0 8px; margin:0; background:#fff; color:#211b1b; }
+.gmm-monster-sheet .gmm-proficiencies-editor { padding:12px; background:#f5f0ed; border:1px solid #d6c3c0; border-radius:4px; }
+.gmm-monster-sheet .gmm-proficiencies-editor h3 { color:#800d10; font-size:14px; margin:0 0 12px; }
+.gmm-monster-sheet .gmm-proficiency-field { display:flex; align-items:center; gap:10px; margin-bottom:12px; font-size:12px; }
+.gmm-monster-sheet .gmm-proficiency-field input { width:65px; min-height:28px; }
+.gmm-monster-sheet .gmm-skill-editor { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.gmm-monster-sheet .gmm-skill-editor label { display:flex; flex-direction:column; gap:3px; font-size:12px; }
+.gmm-monster-sheet .gmm-skill-editor select { width:100%; min-height:28px; font-size:12px; }
+.gmm-monster-sheet .gmm-proficiencies-summary { display:flex; flex-direction:column; gap:4px; }
+.gmm-monster-sheet .gmm-proficiency-line { font-size:13px; line-height:1.35; }
+.gmm-monster-sheet .gmm-proficiency-line strong { color:#198341; }
+.gmm-monster-sheet .gmm-stat-chat-link { display:inline; width:auto; min-width:0; height:auto; min-height:0; padding:0; margin:0; background:none; border:0; border-radius:0; box-shadow:none; color:inherit; font:inherit; line-height:inherit; vertical-align:baseline; cursor:pointer; }
+.gmm-monster-sheet .gmm-stat-chat-link:hover { text-decoration:underline; }
+.gmm-monster-sheet .gmm-stat-chat-link:focus-visible { outline:1px solid currentColor; outline-offset:2px; }

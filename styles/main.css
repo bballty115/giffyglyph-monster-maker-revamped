@@ -1,0 +1,27 @@
+/*
+ * Giffyglyph Monster Maker Revamped
+ * Main Stylesheet
+ */
+
+/* Create Scaling Monster sidebar button */
+#gmm-create-scaling-monster {
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+/* Monster creation dialog */
+
+.gmm-monster-creation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.gmm-monster-creation label {
+    font-weight: bold;
+}
+
+.gmm-monster-creation input {
+    width: 100%;
+}

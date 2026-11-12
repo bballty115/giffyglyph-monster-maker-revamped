@@ -1,0 +1,662 @@
+<section class='gmm-sheet-body'>
+
+    <!-- Editing mode toolbar -->
+    <div class='gmm-mode-toolbar'>
+
+        <span class='gmm-mode-label'>
+            {{#if isEditMode}}
+                Edit Mode
+            {{else}}
+                View Mode
+            {{/if}}
+        </span>
+
+        <button
+            type='button'
+            class='gmm-mode-toggle'
+            data-action='toggleEditMode'
+        >
+            {{#if isEditMode}}
+                <i class='fas fa-eye'></i>
+                Finish Editing
+            {{else}}
+                <i class='fas fa-pen'></i>
+                Edit Monster
+            {{/if}}
+        </button>
+
+    </div>
+
+    <!-- Monster header -->
+    <header class='gmm-sheet-header'>
+
+        <div class='gmm-header-info'>
+
+            {{#if isEditMode}}
+
+                <input
+                    class='gmm-name'
+                    type='text'
+                    name='monsterName'
+                    value='{{monster.name}}'
+                    aria-label='Monster Name'
+                />
+
+            {{else}}
+
+                <h2 class='gmm-name-display'>
+                    {{monster.name}}
+                </h2>
+
+            {{/if}}
+
+            <div class='gmm-subtitle'>
+                Scaling Monster
+            </div>
+
+        </div>
+
+        {{#if isEditMode}}
+
+            <button
+                type='button'
+                class='gmm-portrait-button'
+                data-action='editPortrait'
+                title='Change Monster Portrait'
+            >
+                <img
+                    class='gmm-portrait'
+                    src='{{monster.img}}'
+                    alt='{{monster.name}}'
+                />
+            </button>
+
+        {{else}}
+
+            <div class='gmm-portrait-display'>
+                <img
+                    class='gmm-portrait'
+                    src='{{monster.img}}'
+                    alt='{{monster.name}}'
+                />
+            </div>
+
+        {{/if}}
+
+    </header>
+
+
+<!-- Ability scores -->
+<div class="gmm-ability-grid">
+
+    {{#each monster.abilities as |ability|}}
+
+        {{#if ../isEditMode}}
+
+            <!-- EDIT MODE: Editable ability score -->
+            <div class="gmm-ability gmm-ability-edit">
+
+                <label class="gmm-ability-label"
+                       for="gmm-ability-{{ability.key}}">
+                    {{ability.label}}
+                </label>
+
+                <input
+                    id="gmm-ability-{{ability.key}}"
+                    class="gmm-ability-input"
+                    type="number"
+                    name="ability-{{ability.key}}"
+                    data-ability="{{ability.key}}"
+                    value="{{ability.score}}"
+                    min="1"
+                    max="30"
+                    step="1"
+                >
+
+                <span class="gmm-ability-modifier">
+                    {{ability.modifier}}
+                </span>
+
+            </div>
+
+        {{else}}
+
+            <!-- VIEW MODE: Clickable ability roll -->
+            <button
+                type="button"
+                class="gmm-ability"
+                data-action="rollAbility"
+                data-ability="{{ability.key}}"
+                title="Roll {{ability.label}} Ability Check"
+            >
+
+                <span class="gmm-ability-label">
+                    {{ability.label}} {{ability.score}}
+                </span>
+
+                <span class="gmm-ability-modifier">
+                    {{ability.modifier}}
+                </span>
+
+            </button>
+
+        {{/if}}
+
+    {{/each}}
+
+</div>
+
+
+    <!-- Health bar: View Mode only -->
+
+    {{#unless isEditMode}}
+        <div class="gmm-hp-section">
+
+        <button
+            type="button"
+            class="gmm-hp-bar"
+            data-action="adjustHP"
+            title="Click to adjust Hit Points"
+            aria-label="Adjust Hit Points"
+        >
+
+            <span
+                class="gmm-hp-fill"
+                style="width: {{combat.hp.percentage}}%;"
+            ></span>
+
+            <span class="gmm-hp-text">
+                {{combat.hp.value}} / {{combat.hp.max}} HP
+            </span>
+
+        </button>
+
+        </div>
+    {{/unless}}
+
+<!-- =====================================
+     Combat Statistics
+     ===================================== -->
+
+<section class="gmm-combat-section">
+
+    {{#if isEditMode}}
+
+        <!-- EDIT MODE -->
+
+        <div class="gmm-combat-editor">
+
+            <h3>Defenses & Combat</h3>
+
+            <div class="gmm-combat-fields">
+
+                <label>
+                    Armor Class
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="ac"
+                        value="{{combat.ac}}"
+                        min="0"
+                    >
+                </label>
+
+                <label>
+                    Attack Bonus
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="attack"
+                        value="{{combat.attack}}"
+                    >
+                </label>
+
+            </div>
+
+            <h3>Saving Throw Proficiencies</h3>
+            <div class="gmm-save-editor">
+                {{#each proficiencies.savingThrows as |save|}}
+                    <label><input type="checkbox" class="gmm-save-trained" data-ability="{{save.key}}" {{#if save.trained}}checked{{/if}}> {{save.label}}</label>
+                {{/each}}
+            </div>
+
+            <h3>Hit Points</h3>
+
+            <div class="gmm-combat-fields">
+
+                <label>
+                    Current HP
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="hp"
+                        value="{{combat.hp.value}}"
+                        min="0"
+                    >
+                </label>
+
+                <label>
+                    Maximum HP
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="hpMax"
+                        value="{{combat.hp.max}}"
+                        min="0"
+                    >
+                </label>
+
+            </div>
+
+            <h3>Attack Statistics</h3>
+
+            <div class="gmm-combat-fields">
+
+                <label>
+                    Difficulty Class
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="dc"
+                        value="{{combat.dc}}"
+                        min="0"
+                    >
+                </label>
+
+                <label>
+                    Damage
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="damage"
+                        value="{{combat.damage}}"
+                        min="0"
+                    >
+                </label>
+
+                <label>
+                    Reach (ft.)
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="reach"
+                        value="{{combat.reach}}"
+                        min="0"
+                    >
+                </label>
+
+                <label>
+                    Range (ft.)
+                    <input
+                        class="gmm-combat-input"
+                        type="number"
+                        data-stat="range"
+                        value="{{combat.range}}"
+                        min="0"
+                    >
+                </label>
+
+            </div>
+
+        </div>
+
+    {{else}}
+
+        <!-- VIEW MODE -->
+
+        <div class="gmm-combat-summary">
+
+            <div class="gmm-combat-line">
+                <i class="fas fa-shield-halved"></i>
+                <span>
+                    <strong>AC {{combat.ac}}.</strong>
+                    {{#if proficiencies.trainedSaves.length}}
+                        <strong>Saving Throws</strong>
+                        {{#each proficiencies.trainedSaves as |save|}}<button type="button" class="gmm-stat-chat-link" data-action="rollSavingThrow" data-ability="{{save.key}}" title="Roll {{save.label}} Saving Throw">{{save.label}} {{save.modifier}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+                    {{/if}}
+                </span>
+            </div>
+
+            <div class="gmm-combat-line">
+                <i class="fas fa-heart"></i>
+                <span>
+                    <strong>HP {{combat.hp.max}}.</strong>
+                    Current {{combat.hp.value}}.
+                </span>
+            </div>
+
+<div class="gmm-defenses-section gmm-defenses-inline">
+
+        <div class="gmm-defenses-summary">
+
+            {{#if defenses.hasResistances}}
+                <div class="gmm-defense-line">
+                    <strong>Resistant</strong> to
+                    {{#each defenses.resistanceEntries as |entry|}}<button type="button" class="gmm-defense-link" data-action="shareDefenses" data-category="resistances" data-value="{{entry.value}}" title="Share {{entry.label}} Resistance to chat">{{entry.label}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+                </div>
+            {{/if}}
+
+            {{#if defenses.hasAnyImmunities}}
+                <div class="gmm-defense-line">
+                    <strong>Immune</strong> to
+                    {{#each defenses.damageImmunityEntries as |entry|}}<button type="button" class="gmm-defense-link gmm-damage-immunity" data-action="shareDefenses" data-category="damageImmunities" data-value="{{entry.value}}" title="Share {{entry.label}} Damage Immunity to chat">{{entry.label}}</button>{{#unless @last}}, {{/unless}}{{/each}}{{#if defenses.hasBothImmunities}} <span class="gmm-immunity-separator">and</span> {{/if}}{{#each defenses.conditionImmunityEntries as |entry|}}<button type="button" class="gmm-defense-link gmm-condition-immunity" data-action="shareDefenses" data-category="conditionImmunities" data-value="{{entry.value}}" title="Share {{entry.label}} Condition Immunity to chat">{{entry.label}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+                </div>
+            {{/if}}
+
+        </div>
+
+</div>
+
+            <div class="gmm-combat-line">
+                <i class="fas fa-swords"></i>
+                <span>
+                    <strong>ATK {{combat.attackDisplay}}.</strong>
+                    <strong>DC {{combat.dc}}.</strong>
+                    <strong>DMG {{combat.damage}}.</strong>
+                    <strong>Reach {{combat.reach}} ft.</strong>
+                    <strong>Range {{combat.range}} ft.</strong>
+                </span>
+            </div>
+
+        </div>
+
+    {{/if}}
+
+
+
+
+
+</section>
+{{#if isEditMode}}
+<section class="gmm-defenses-section">
+
+        <div class="gmm-defenses-editor">
+            <h3>Resistances & Immunities</h3>
+
+            {{#each defenses.groups as |group|}}
+
+                <div class="gmm-defense-group">
+
+                    <div class="gmm-defense-heading">
+                        <strong>{{group.label}}</strong>
+
+                        <button
+                            type="button"
+                            class="gmm-defense-add"
+                            data-category="{{group.key}}"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                            Add
+                        </button>
+                    </div>
+
+                    <div class="gmm-defense-entries">
+                        {{#each group.entries as |entry|}}
+
+                            <div class="gmm-defense-entry">
+                                <span>{{entry.label}}</span>
+
+                                <button
+                                    type="button"
+                                    class="gmm-defense-remove"
+                                    data-category="{{group.key}}"
+                                    data-index="{{entry.index}}"
+                                    title="Remove"
+                                >
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+
+                        {{/each}}
+                    </div>
+
+                    <div
+                        class="gmm-defense-new"
+                        data-category="{{group.key}}"
+                        hidden
+                    >
+                        <select
+                            class="gmm-defense-select"
+                            data-category="{{group.key}}"
+                        >
+                            <option value="">Select an option...</option>
+
+                            
+                            {{#each group.options as |option|}}
+                                <option
+                                    value="{{option.value}}"
+                                    {{#if option.disabled}}disabled{{/if}}
+                                >
+                                    {{option.label}}
+                                </option>
+                            {{/each}}
+
+                        </select>
+
+                        <input
+                            type="text"
+                            class="gmm-defense-custom"
+                            placeholder="Enter custom entry"
+                            maxlength="100"
+                            hidden
+                        >
+
+                        <div class="gmm-defense-buttons">
+                            <button
+                                type="button"
+                                class="gmm-defense-save"
+                                data-category="{{group.key}}"
+                            >
+                                Save
+                            </button>
+
+                            <button
+                                type="button"
+                                class="gmm-defense-cancel"
+                                data-category="{{group.key}}"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            {{/each}}
+
+        </div>
+
+
+
+</section>
+{{/if}}
+
+{{#unless isEditMode}}
+    <div class="gmm-combat-divider" aria-hidden="true"></div>
+{{/unless}}
+
+<section class="gmm-movement-section">
+    {{#if isEditMode}}
+        <div class="gmm-initiative-editor">
+            <label for="gmm-initiative-bonus"><strong>Additional Initiative Modifier</strong></label>
+            <input id="gmm-initiative-bonus" class="gmm-initiative-bonus" type="number" min="-100" max="100" step="1" value="{{initiative.additional}}">
+            <span class="gmm-initiative-preview">Total: {{initiative.totalDisplay}} ({{initiative.additionalDisplay}} additional)</span>
+        </div>
+        <div class="gmm-movement-editor">
+            <h3>Speed</h3>
+            <div class="gmm-movement-group">
+                <div class="gmm-defense-heading"><strong>Speed</strong>
+                    <button type="button" class="gmm-movement-add">Add</button>
+                </div>
+                <div class="gmm-movement-entries">
+                    {{#each movement.group.entries as |entry|}}
+                        <div class="gmm-defense-entry">{{entry.label}}
+                            <button type="button" class="gmm-movement-remove" data-index="{{entry.index}}" title="Remove {{entry.label}}"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="gmm-movement-new" hidden>
+                    <select class="gmm-movement-select">
+                        <option value="">Select an option...</option>
+                        {{#each movement.group.options as |option|}}
+                            <option value="{{option.value}}" {{#if option.disabled}}disabled{{/if}}>{{option.label}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="text" class="gmm-movement-custom" maxlength="100" placeholder="Custom movement type" hidden>
+                    <label>Distance (ft) <input type="number" class="gmm-movement-distance" min="0" max="99999" step="1" value="30"></label>
+                    <div class="gmm-defense-buttons">
+                        <button type="button" class="gmm-movement-save">Save</button>
+                        <button type="button" class="gmm-movement-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="gmm-movement-line gmm-icon-row"><i class="fas fa-bolt gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text">
+            {{#if movement.hasEntries}}<strong>Speed</strong>
+                {{#each movement.entries as |entry|}}<button type="button" class="gmm-stat-chat-link" data-action="shareMovement" data-index="{{entry.index}}" title="Share {{entry.label}}">{{entry.label}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+            {{/if}}
+            <button type="button" class="gmm-stat-chat-link" data-action="rollMonsterInitiative" title="Add to the active encounter and roll initiative"><strong>Initiative</strong> {{initiative.totalDisplay}} ({{initiative.additionalDisplay}})</button>.
+        </span></div>
+        {{#if proficiencies.trainedSkills.length}}
+            <div class="gmm-proficiency-line gmm-icon-row"><i class="fas fa-screwdriver-wrench gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text"><strong>Skills</strong>
+                {{#each proficiencies.trainedSkills as |skill|}}<button type="button" class="gmm-stat-chat-link" data-action="rollSkill" data-skill="{{skill.key}}" title="Roll {{skill.label}}">{{skill.label}} {{skill.modifier}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+            </span></div>
+        {{/if}}
+    {{/if}}
+</section>
+
+<section class="gmm-senses-section">
+    {{#if isEditMode}}
+        <div class="gmm-senses-editor">
+            <h3>Senses</h3>
+            <div class="gmm-senses-group">
+                <div class="gmm-defense-heading"><strong>Senses</strong>
+                    <button type="button" class="gmm-senses-add">Add</button>
+                </div>
+                <div class="gmm-senses-entries">
+                    {{#each senses.group.entries as |entry|}}
+                        <div class="gmm-defense-entry">{{entry.label}}
+                            <button type="button" class="gmm-senses-remove" data-index="{{entry.index}}" title="Remove {{entry.label}}"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="gmm-senses-new" hidden>
+                    <select class="gmm-senses-select">
+                        <option value="">Select an option...</option>
+                        {{#each senses.group.options as |option|}}
+                            <option value="{{option.value}}" {{#if option.disabled}}disabled{{/if}}>{{option.label}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="text" class="gmm-senses-custom" maxlength="100" placeholder="Custom sense" hidden>
+                    <label>Range (ft) <input type="number" class="gmm-senses-distance" min="0" max="99999" step="1" value="30"></label>
+                    <div class="gmm-defense-buttons">
+                        <button type="button" class="gmm-senses-save">Save</button>
+                        <button type="button" class="gmm-senses-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <p class="gmm-senses-note">Passive Perception is calculated from Wisdom and Perception training.</p>
+        </div>
+    {{else}}
+        <div class="gmm-senses-line gmm-icon-row"><i class="fas fa-eye gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text"><strong>Senses</strong>
+            {{#each senses.entries as |entry|}}<button type="button" class="gmm-stat-chat-link" data-action="shareSense" data-index="{{entry.index}}" title="Share {{entry.label}}">{{entry.label}}</button>{{#unless @last}}, {{/unless}}{{/each}}{{#if senses.hasEntries}}. {{/if}}
+            <button type="button" class="gmm-stat-chat-link" data-action="sharePassivePerception" title="Share Passive Perception"><strong>Passive Perception</strong> {{senses.passivePerception}}</button>.
+        </span></div>
+    {{/if}}
+</section>
+
+<section class="gmm-details-section gmm-languages-section">
+    {{#if isEditMode}}
+        <div class="gmm-details-editor">
+            <h3>Languages</h3>
+            <div class="gmm-details-heading"><strong>Languages</strong>
+                <button type="button" class="gmm-details-add" data-category="languages">Add</button>
+            </div>
+            <div class="gmm-details-entries">
+                {{#each details.languages as |entry|}}
+                    <div class="gmm-defense-entry"><span>{{entry.value}}</span>
+                        <button type="button" class="gmm-details-remove" data-category="languages" data-index="{{entry.index}}" title="Remove {{entry.value}}"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="gmm-details-new" data-category="languages" hidden>
+                <input type="text" class="gmm-details-input" maxlength="100" placeholder="Enter a language">
+                <div class="gmm-defense-buttons">
+                    <button type="button" class="gmm-details-save" data-category="languages">Save</button>
+                    <button type="button" class="gmm-details-cancel" data-category="languages">Cancel</button>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        {{#if details.hasLanguages}}
+            <div class="gmm-details-line gmm-icon-row"><i class="fas fa-comment gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text"><strong>Languages</strong>
+                {{#each details.languages as |entry|}}<button type="button" class="gmm-stat-chat-link" data-action="shareDetail" data-category="languages" data-index="{{entry.index}}" title="Share {{entry.value}}">{{entry.value}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+            </span></div>
+        {{/if}}
+    {{/if}}
+</section>
+
+<section class="gmm-proficiencies-section">
+    {{#if isEditMode}}
+        <div class="gmm-proficiencies-editor">
+            <h3>Proficiency &amp; Skills</h3>
+            <label class="gmm-proficiency-field">Proficiency Bonus
+                <input type="number" class="gmm-proficiency-bonus" min="-20" max="30" step="1" value="{{proficiencies.bonus}}">
+            </label>
+            <label class="gmm-details-xp-field">Experience Points (XP)
+                <input type="number" class="gmm-details-xp" min="0" step="1" value="{{details.xp}}" placeholder="Not set">
+            </label>
+            <div class="gmm-skill-editor">
+                {{#each proficiencies.skills as |skill|}}
+                    <label>{{skill.label}}
+                        <select class="gmm-skill-rank" data-skill="{{skill.key}}">
+                            <option value="0" {{#if skill.none}}selected{{/if}}>None</option>
+                            <option value="1" {{#if skill.proficient}}selected{{/if}}>Proficient</option>
+                            <option value="2" {{#if skill.expertise}}selected{{/if}}>Expertise</option>
+                        </select>
+                    </label>
+                {{/each}}
+            </div>
+        </div>
+    {{else}}
+        <div class="gmm-proficiencies-summary">
+
+            <div class="gmm-proficiency-line gmm-icon-row"><i class="fas fa-award gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text"><button type="button" class="gmm-stat-chat-link" data-action="shareProficiency" title="Share proficiency bonus"><strong>Proficiency</strong> {{proficiencies.bonusDisplay}}</button>{{#if details.hasXP}}. <button type="button" class="gmm-stat-chat-link" data-action="shareXP" title="Share XP"><strong>XP</strong> {{details.xp}}</button>{{/if}}.</span></div>
+        </div>
+    {{/if}}
+</section>
+
+
+<section class="gmm-details-section gmm-items-section">
+    {{#if isEditMode}}
+        <div class="gmm-details-editor">
+            <h3>Items</h3>
+            <div class="gmm-details-heading"><strong>Items</strong>
+                <button type="button" class="gmm-details-add" data-category="items">Add</button>
+            </div>
+            <div class="gmm-details-entries">
+                {{#each details.items as |entry|}}
+                    <div class="gmm-defense-entry"><span>{{entry.value}}</span>
+                        <button type="button" class="gmm-details-remove" data-category="items" data-index="{{entry.index}}" title="Remove {{entry.value}}"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="gmm-details-new" data-category="items" hidden>
+                <input type="text" class="gmm-details-input" maxlength="100" placeholder="Enter an item">
+                <div class="gmm-defense-buttons">
+                    <button type="button" class="gmm-details-save" data-category="items">Save</button>
+                    <button type="button" class="gmm-details-cancel" data-category="items">Cancel</button>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        {{#if details.hasItems}}
+            <div class="gmm-details-line gmm-icon-row"><i class="fas fa-sack gmm-summary-icon" aria-hidden="true"></i><span class="gmm-summary-text"><strong>Items</strong>
+                {{#each details.items as |entry|}}<button type="button" class="gmm-stat-chat-link" data-action="shareDetail" data-category="items" data-index="{{entry.index}}" title="Share {{entry.value}}">{{entry.value}}</button>{{#unless @last}}, {{/unless}}{{/each}}.
+            </span></div>
+        {{/if}}
+    {{/if}}
+</section>
+
+</section>

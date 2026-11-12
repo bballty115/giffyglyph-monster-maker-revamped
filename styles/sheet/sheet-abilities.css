@@ -1,0 +1,159 @@
+/* =========================================
+   Giffyglyph Ability Score Bar
+   ========================================= */
+
+.gmm-monster-sheet .gmm-ability-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1px;
+    padding: 6px;
+    background: #ffffff;
+}
+
+/* Each ability is a clickable column. */
+
+.gmm-monster-sheet button.gmm-ability {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+
+    margin: 0;
+    padding: 0;
+
+    background: #870f12;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Upper section: ability name and score. */
+
+.gmm-monster-sheet .gmm-ability-label {
+    display: block;
+    width: 100%;
+    padding: 3px 0 2px;
+
+    background: #650709;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Lower section: ability modifier. */
+
+.gmm-monster-sheet .gmm-ability-modifier {
+    display: block;
+    width: 100%;
+    padding: 1px 0 3px;
+
+    background: #870f12;
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* Hover effect */
+
+.gmm-monster-sheet button.gmm-ability:hover .gmm-ability-label {
+    background: #8b2023;
+}
+
+.gmm-monster-sheet button.gmm-ability:hover .gmm-ability-modifier {
+    background: #aa2528;
+}
+
+/* Keyboard focus */
+
+.gmm-monster-sheet button.gmm-ability:focus-visible {
+    outline: 2px solid #e4b45d;
+    outline-offset: -2px;
+}
+
+/* =========================================
+   Editable Ability Scores
+   ========================================= */
+
+.gmm-monster-sheet .gmm-ability-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+
+    background: #870f12;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Ability score input */
+
+.gmm-monster-sheet input.gmm-ability-input {
+    display: block;
+
+    width: calc(100% - 10px);
+    height: 26px;
+    min-width: 0;
+
+    margin: 3px 5px;
+    padding: 2px;
+
+    background: #ffffff;
+    color: #650709;
+
+    border: 1px solid #c9a0a0;
+    border-radius: 3px;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Highlight input when editing */
+
+.gmm-monster-sheet input.gmm-ability-input:focus {
+    outline: 2px solid #e4b45d;
+    outline-offset: 0;
+    box-shadow: none;
+}
+
+/* Keep modifiers visually consistent */
+
+.gmm-monster-sheet .gmm-ability-edit .gmm-ability-modifier {
+    background: #870f12;
+    color: #ffffff;
+    padding: 2px 0 4px;
+}
+
+/* Remove browser number spinners */
+
+.gmm-monster-sheet input.gmm-ability-input::-webkit-inner-spin-button,
+.gmm-monster-sheet input.gmm-ability-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.gmm-monster-sheet input.gmm-ability-input {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+

@@ -1,0 +1,103 @@
+/* Header */
+
+.gmm-monster-sheet .gmm-sheet-header {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 12px;
+    background: #800d10;
+    padding: 8px;
+}
+
+.gmm-monster-sheet .gmm-header-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+/* Monster name */
+
+.gmm-monster-sheet input.gmm-name {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: auto;
+}
+
+.gmm-monster-sheet input.gmm-name:focus {
+    outline: 1px solid #e9c8a3;
+}
+
+.gmm-monster-sheet .gmm-subtitle {
+    color: #f4d7d7;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* Portrait */
+
+.gmm-monster-sheet .gmm-portrait-button {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    padding: 3px;
+    background: #e7d8ad;
+    border: 2px solid #211515;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gmm-monster-sheet .gmm-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 8px;
+}
+
+/* =========================================
+   View Mode Name
+   ========================================= */
+
+.gmm-monster-sheet .gmm-name-display {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+    border: none;
+}
+
+/* =========================================
+   Portrait Display
+   ========================================= */
+
+.gmm-monster-sheet .gmm-portrait-display {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    padding: 3px;
+    background: #e7d8ad;
+    border: 2px solid #211515;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Editing affordance */
+
+.gmm-monster-sheet .gmm-portrait-button:hover {
+    outline: 2px solid #f5d7a1;
+    outline-offset: 1px;
+}
+

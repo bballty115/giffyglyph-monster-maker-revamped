@@ -1,0 +1,91 @@
+/*
+ * Giffyglyph Monster Maker Revamped
+ * Custom Monster Sheet
+ */
+
+.gmm-monster-sheet .gmm-sheet-body {
+    background: #ffffff;
+    color: #211b1b;
+    font-family: Arial, sans-serif;
+    min-height: 180px;
+}
+
+/* =========================================
+   Sheet Scrolling
+   ========================================= */
+
+/* Allow the sheet window to contain a scrolling area. */
+
+.gmm-monster-sheet .window-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Main sheet container */
+
+.gmm-monster-sheet .gmm-sheet-body {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #800d10 #e9e0db;
+}
+
+/* Keep the mode toggle visible while scrolling. */
+
+.gmm-monster-sheet .gmm-mode-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Optional scrollbar styling for Chromium. */
+
+.gmm-monster-sheet .gmm-sheet-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.gmm-monster-sheet .gmm-sheet-body::-webkit-scrollbar-track {
+    background: #e9e0db;
+}
+
+.gmm-monster-sheet .gmm-sheet-body::-webkit-scrollbar-thumb {
+    background: #800d10;
+    border-radius: 4px;
+}
+
+.gmm-monster-sheet .gmm-sheet-body::-webkit-scrollbar-thumb:hover {
+    background: #a5191c;
+}
+
+
+/* Separate combat from secondary statistics. */
+.gmm-monster-sheet .gmm-combat-divider {
+    height: 2px;
+    flex-shrink: 0;
+    margin: 5px 8px 4px;
+    background: #800d10;
+}
+
+/* Consistent icon column for secondary statistics. */
+.gmm-monster-sheet .gmm-icon-row {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr);
+    column-gap: 7px;
+    align-items: baseline;
+}
+
+.gmm-monster-sheet .gmm-summary-icon {
+    color: #871316;
+    width: 16px;
+    text-align: center;
+}
+

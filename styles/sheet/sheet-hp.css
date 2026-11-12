@@ -1,0 +1,76 @@
+.gmm-monster-sheet .gmm-hp-section {
+    padding: 0 8px;
+}
+
+/* =========================================
+   Clickable Health Bar
+   ========================================= */
+
+.gmm-monster-sheet button.gmm-hp-bar {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: 34px;
+    min-height: 34px;
+
+    margin: 6px 0 8px;
+    padding: 0;
+
+    background: #3c2424;
+    border: 1px solid #5a1717;
+    border-radius: 4px;
+
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+/* Filled HP portion */
+
+.gmm-monster-sheet .gmm-hp-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    height: 100%;
+
+    background: #a8282b;
+
+    transition: width 0.2s ease;
+    pointer-events: none;
+}
+
+/* HP number overlay */
+
+.gmm-monster-sheet .gmm-hp-text {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+
+    text-shadow: 0 1px 3px #000000;
+    pointer-events: none;
+}
+
+/* Hover feedback */
+
+.gmm-monster-sheet button.gmm-hp-bar:hover {
+    border-color: #e2a3a3;
+    filter: brightness(1.12);
+}
+
+/* Keyboard focus */
+
+.gmm-monster-sheet button.gmm-hp-bar:focus-visible {
+    outline: 2px solid #e4b45d;
+    outline-offset: 2px;
+}
+

@@ -1,0 +1,13 @@
+/* Speed editing and display. */
+.gmm-monster-sheet .gmm-movement-section { padding:0 8px; background:#fff; color:#211b1b; }
+.gmm-monster-sheet .gmm-movement-line { font-size:13px; line-height:1.35; }
+.gmm-monster-sheet .gmm-movement-line strong { color:#198341; }
+.gmm-monster-sheet .gmm-movement-editor { padding:12px; background:#f5f0ed; border:1px solid #d6c3c0; border-radius:4px; }
+.gmm-monster-sheet .gmm-movement-editor h3 { margin:0 0 12px; font-size:14px; color:#800d10; }
+.gmm-monster-sheet .gmm-movement-group { margin-bottom:14px; }
+.gmm-monster-sheet .gmm-movement-entries { display:flex; flex-wrap:wrap; gap:5px; }
+.gmm-monster-sheet .gmm-movement-add, .gmm-monster-sheet .gmm-movement-save { width:auto; min-height:26px; padding:4px 10px; border-radius:4px; background:#800d10; color:white; cursor:pointer; }
+.gmm-monster-sheet .gmm-movement-remove { width:20px; min-height:20px; height:20px; padding:0; border:0; box-shadow:none; background:transparent; color:#800d10; cursor:pointer; }
+.gmm-monster-sheet .gmm-movement-new:not([hidden]) { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+.gmm-monster-sheet .gmm-movement-new[hidden], .gmm-monster-sheet .gmm-movement-custom[hidden] { display:none !important; }
+.gmm-monster-sheet .gmm-movement-new select, .gmm-monster-sheet .gmm-movement-new input { width:100%; min-height:30px; background:#fff; color:#211b1b; }

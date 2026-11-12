@@ -1,0 +1,11 @@
+{
+    "id": "giffyglyph-monster-maker-revamped",
+    "title": "Giffyglyph Monster Maker Revamped",
+    "description": "Revamped module for making custom modules using Giffyglyph Monster Maker rules and guidelines.",
+    "compatibility": {
+        "minimum": "14",
+        "verified": "14"
+    },
+    "esmodules": ["scripts/main.js"],
+    "styles": ["styles/main.css", "styles/sheet/monster-sheet.css"]
+}

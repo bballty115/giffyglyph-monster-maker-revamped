@@ -1,0 +1,222 @@
+
+/* =========================================
+   Resistances & Immunities
+   ========================================= */
+
+.gmm-monster-sheet .gmm-defenses-section {
+    padding: 0 8px 0; margin: 0;
+    background: #ffffff;
+    color: #211b1b;
+}
+
+/* View Mode */
+
+.gmm-monster-sheet .gmm-defenses-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gmm-monster-sheet .gmm-defense-line {
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.gmm-monster-sheet .gmm-defense-line strong {
+    color: #198341;
+    font-weight: bold;
+}
+
+/* Edit Mode */
+
+.gmm-monster-sheet .gmm-defenses-editor {
+    padding: 12px;
+    background: #f5f0ed;
+    border: 1px solid #d6c3c0;
+    border-radius: 4px;
+}
+
+.gmm-monster-sheet .gmm-defenses-editor h3 {
+    margin: 0 0 12px;
+    padding-bottom: 4px;
+    color: #800d10;
+    font-size: 14px;
+    border-bottom: 1px solid #c9aaa5;
+}
+
+.gmm-monster-sheet .gmm-defense-group {
+    margin-bottom: 14px;
+}
+
+.gmm-monster-sheet .gmm-defense-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.gmm-monster-sheet .gmm-defense-add {
+    width: auto;
+    padding: 4px 8px;
+    min-height: 26px;
+    background: #800d10;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.gmm-monster-sheet .gmm-defense-entries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.gmm-monster-sheet .gmm-defense-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    background: #e8d9d5;
+    border: 1px solid #c9aaa5;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.gmm-monster-sheet .gmm-defense-remove {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    padding: 0;
+    background: transparent;
+    color: #800d10;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.gmm-monster-sheet .gmm-defense-new {
+    margin-top: 8px;
+}
+
+.gmm-monster-sheet .gmm-defense-new:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gmm-monster-sheet .gmm-defense-new select,
+.gmm-monster-sheet .gmm-defense-new input {
+    width: 100%;
+    min-height: 30px;
+    background: #ffffff;
+    color: #211b1b;
+}
+
+.gmm-monster-sheet .gmm-defense-save {
+    align-self: flex-start;
+    width: auto;
+    min-height: 28px;
+    padding: 4px 12px;
+    background: #800d10;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+/* Ensure hidden controls stay hidden. */
+
+.gmm-monster-sheet .gmm-defense-new[hidden],
+.gmm-monster-sheet .gmm-defense-custom[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   Immunity Display Refinements
+   ========================================= */
+
+.gmm-monster-sheet .gmm-immunity-separator {
+    color: #c47725;
+    font-weight: bold;
+    padding: 0 2px;
+}
+
+/* Keep damage and condition immunity text readable. */
+
+.gmm-monster-sheet .gmm-damage-immunity,
+.gmm-monster-sheet .gmm-condition-immunity {
+    color: inherit;
+}
+
+/* =========================================
+   Add Editor Buttons
+   ========================================= */
+
+.gmm-monster-sheet .gmm-defense-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gmm-monster-sheet .gmm-defense-cancel {
+    width: auto;
+    min-height: 28px;
+    padding: 4px 12px;
+
+    background: #ded4cf;
+    color: #4d3434;
+
+    border: 1px solid #bca7a2;
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.gmm-monster-sheet .gmm-defense-cancel:hover {
+    background: #cfc0ba;
+    color: #211b1b;
+}
+
+/* Prevent whitespace before punctuation when
+   only damage immunities are present. */
+
+.gmm-monster-sheet .gmm-damage-immunity-period {
+    margin-left: -0.25em;
+}
+
+/* =========================================
+   Individual Defense Chat Links
+   ========================================= */
+
+.gmm-monster-sheet .gmm-defense-link {
+    display: inline;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+
+.gmm-monster-sheet .gmm-defense-link:hover {
+    text-decoration: underline;
+    background: transparent;
+    box-shadow: none;
+}
+
+.gmm-monster-sheet .gmm-defense-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 2px;
+}
+
+.gmm-monster-sheet .gmm-defenses-inline { padding: 0; margin: 0; }

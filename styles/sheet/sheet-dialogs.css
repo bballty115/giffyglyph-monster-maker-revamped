@@ -1,0 +1,27 @@
+/* =========================================
+   HP Adjustment Dialog
+   ========================================= */
+
+.gmm-hp-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 0;
+}
+
+.gmm-hp-dialog label {
+    font-weight: bold;
+}
+
+.gmm-hp-dialog input {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.gmm-hp-dialog .gmm-hp-help {
+    font-size: 12px;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin: 0;
+}

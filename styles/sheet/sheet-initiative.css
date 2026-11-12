@@ -1,0 +1,16 @@
+/* Stage 4: Initiative controls and encounter roll. */
+.gmm-monster-sheet .gmm-initiative-editor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #f5f0ed;
+    border: 1px solid #d6c3c0;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.gmm-monster-sheet .gmm-initiative-editor label { color: #800d10; }
+.gmm-monster-sheet .gmm-initiative-bonus { width: 70px; min-height: 28px; }
+.gmm-monster-sheet .gmm-initiative-preview { color: #4d3434; }
